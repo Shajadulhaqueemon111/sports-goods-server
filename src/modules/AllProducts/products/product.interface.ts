@@ -6,9 +6,12 @@ export type productDetails = {
   rating: string;
   features: string;
   availabity: string;
+  image: string;
 };
 export type Products = {
   id: string;
 
   sportroduct: productDetails;
+
+  isDeleted: boolean;
 };

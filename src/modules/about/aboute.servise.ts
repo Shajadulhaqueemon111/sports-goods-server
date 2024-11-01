@@ -7,6 +7,11 @@ const getAbouteIntoDB = async (aboute: Aboute) => {
   return result;
 };
 
+const getAllAbouteIntoDB = async () => {
+  const result = await AboutModel.find();
+  return result;
+};
 export const AbouteServices = {
   getAbouteIntoDB,
+  getAllAbouteIntoDB,
 };

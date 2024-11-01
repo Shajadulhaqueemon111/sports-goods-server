@@ -8,6 +8,7 @@ const cors_1 = __importDefault(require("cors"));
 const aboute_router_1 = require("./modules/about/aboute.router");
 const product_router_1 = require("./modules/AllProducts/products/product.router");
 const single_product_router_1 = require("./modules/singleProduct/single.product.router");
+const user_route_1 = require("./modules/user/user.route");
 const app = (0, express_1.default)();
 //parser
 app.use(express_1.default.json());
@@ -16,6 +17,7 @@ app.use((0, cors_1.default)());
 app.use("/api/v1/aboute", aboute_router_1.AbouteRoutes);
 app.use("/api/v1/product", product_router_1.ProductRoute);
 app.use("/api/v1/single", single_product_router_1.SingleProductRoute);
+app.use("/api/v1/user", user_route_1.userRoute);
 // app.get("/", async (req: Request, res: Response, next: NextFunction) => {
 //   try {
 //     res.send("Hello Worlds!");

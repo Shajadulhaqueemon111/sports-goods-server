@@ -13,7 +13,7 @@ exports.SingleProductControllers = void 0;
 const single_product_service_1 = require("./single.product.service");
 const createSingleProductData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { single_Data: productData } = req.body;
+        const { single_product: productData } = req.body;
         const result = yield single_product_service_1.SingleProductService.createSingleProductIntoDB(productData);
         res.status(200).json({
             success: true,
@@ -26,6 +26,7 @@ const createSingleProductData = (req, res) => __awaiter(void 0, void 0, void 0, 
         res.status(400).json({
             success: false,
             message: "An error occurred while fetching the data.",
+            data: error,
         });
     }
 });
@@ -43,6 +44,7 @@ const getAllSingleProductData = (req, res) => __awaiter(void 0, void 0, void 0, 
         res.status(400).json({
             success: false,
             message: "An error occurred while fetching the data.",
+            data: error,
         });
     }
 });
@@ -61,6 +63,7 @@ const getSingleProductData = (req, res) => __awaiter(void 0, void 0, void 0, fun
         res.status(400).json({
             success: false,
             message: "An error occurred while fetching the data.",
+            data: error,
         });
     }
 });

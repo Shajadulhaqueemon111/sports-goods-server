@@ -26,6 +26,7 @@ const createProductData = (req, res) => __awaiter(void 0, void 0, void 0, functi
         res.status(400).json({
             success: false,
             message: "An error occurred while fetching the data.",
+            data: error,
         });
     }
 });
@@ -66,8 +67,65 @@ const getSingleProductData = (req, res) => __awaiter(void 0, void 0, void 0, fun
         });
     }
 });
+const deleteProductData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const result = yield product_service_1.ProductService.deleteProductFromDB(id);
+        if (result) {
+            res.status(200).json({
+                success: true,
+                message: "Product deleted successfully",
+                data: result,
+            });
+        }
+        else {
+            res.status(404).json({
+                success: false,
+                message: "Product not found",
+            });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.status(400).json({
+            success: false,
+            message: "An error occurred while deleting the product.",
+            data: error,
+        });
+    }
+});
+const updateProductData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const updatedData = req.body;
+        const result = yield product_service_1.ProductService.updateProductInDB(id, updatedData);
+        if (result) {
+            res.status(200).json({
+                success: true,
+                message: "Product updated successfully",
+                data: result,
+            });
+        }
+        else {
+            res.status(404).json({
+                success: false,
+                message: "Product not found",
+            });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.status(400).json({
+            success: false,
+            message: "An error occurred while updating the product.",
+            data: error,
+        });
+    }
+});
 exports.ProductControllers = {
     createProductData,
     getAllProductData,
     getSingleProductData,
+    deleteProductData,
+    updateProductData,
 };

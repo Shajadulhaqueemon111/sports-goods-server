@@ -3,7 +3,7 @@ import { SingleProductService } from "./single.product.service";
 
 const createSingleProductData = async (req: Request, res: Response) => {
   try {
-    const { single_Data: productData } = req.body;
+    const { single_product: productData } = req.body;
 
     const result =
       await SingleProductService.createSingleProductIntoDB(productData);
@@ -18,6 +18,7 @@ const createSingleProductData = async (req: Request, res: Response) => {
     res.status(400).json({
       success: false,
       message: "An error occurred while fetching the data.",
+      data: error,
     });
   }
 };
@@ -35,6 +36,7 @@ const getAllSingleProductData = async (req: Request, res: Response) => {
     res.status(400).json({
       success: false,
       message: "An error occurred while fetching the data.",
+      data: error,
     });
   }
 };
@@ -52,6 +54,7 @@ const getSingleProductData = async (req: Request, res: Response) => {
     res.status(400).json({
       success: false,
       message: "An error occurred while fetching the data.",
+      data: error,
     });
   }
 };

@@ -9,4 +9,5 @@ const aboute_controller_1 = require("./aboute.controller");
 const router = express_1.default.Router();
 //eill coll controller function
 router.post("/aboute-details", aboute_controller_1.AbouteControllers.getAbouteData);
+router.get("/aboute-details", aboute_controller_1.AbouteControllers.getAllAbouteData);
 exports.AbouteRoutes = router;

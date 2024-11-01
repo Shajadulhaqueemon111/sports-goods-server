@@ -17,10 +17,30 @@ const getAbouteData = async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       message: "An error occurred while fetching the data.",
+      data: error,
+    });
+  }
+};
+const getAllAbouteData = async (req: Request, res: Response) => {
+  try {
+    const result = await AbouteServices.getAllAbouteIntoDB();
+
+    res.status(200).json({
+      success: true,
+      message: "Aboute get data is successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while fetching the data.",
+      data: error,
     });
   }
 };
 
 export const AbouteControllers = {
   getAbouteData,
+  getAllAbouteData,
 };

@@ -15,6 +15,11 @@ const getAbouteIntoDB = (aboute) => __awaiter(void 0, void 0, void 0, function* 
     const result = yield aboute_model_1.AboutModel.create(aboute);
     return result;
 });
+const getAllAbouteIntoDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield aboute_model_1.AboutModel.find();
+    return result;
+});
 exports.AbouteServices = {
     getAbouteIntoDB,
+    getAllAbouteIntoDB,
 };

@@ -9,46 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AbouteControllers = void 0;
-const aboute_servise_1 = require("./aboute.servise");
-const getAbouteData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.cerateUserController = void 0;
+const user_service_1 = require("./user.service");
+const createUserData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { Aboute_details: abouteData } = req.body;
-        const result = yield aboute_servise_1.AbouteServices.getAbouteIntoDB(abouteData);
+        const { password, createUser: userData } = req.body;
+        const result = yield user_service_1.createUserServices.createUserIntoDB(password, userData);
         res.status(200).json({
             success: true,
-            message: "Aboute get data is successfully",
+            message: "single Product Create data is successfully",
             data: result,
         });
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({
+        res.status(400).json({
             success: false,
             message: "An error occurred while fetching the data.",
             data: error,
         });
     }
 });
-const getAllAbouteData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const result = yield aboute_servise_1.AbouteServices.getAllAbouteIntoDB();
-        res.status(200).json({
-            success: true,
-            message: "Aboute get data is successfully",
-            data: result,
-        });
-    }
-    catch (error) {
-        console.error(error);
-        res.status(500).json({
-            success: false,
-            message: "An error occurred while fetching the data.",
-            data: error,
-        });
-    }
-});
-exports.AbouteControllers = {
-    getAbouteData,
-    getAllAbouteData,
+exports.cerateUserController = {
+    createUserData,
 };

@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 const single_product_controller_1 = require("./single.product.controller");
 const router = express_1.default.Router();
 //eill coll controller function
-router.get("/create-product", single_product_controller_1.SingleProductControllers.createSingleProductData);
+router.post("/create-product", single_product_controller_1.SingleProductControllers.createSingleProductData);
 router.get("/get-product", single_product_controller_1.SingleProductControllers.getAllSingleProductData);
-router.get("/:id", single_product_controller_1.SingleProductControllers.getSingleProductData);
+router.get("/get-product/:id", single_product_controller_1.SingleProductControllers.getSingleProductData);
 exports.SingleProductRoute = router;
