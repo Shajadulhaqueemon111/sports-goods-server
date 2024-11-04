@@ -12,9 +12,24 @@ const getAllSingleProductIntoDB = async () => {
   return result;
 };
 
-const getSingleProductIntoDB = async (id: string) => {
-  const result = await SingleModel.findOne({ id });
+const getSingleProductIntoDB = async (_id: string) => {
+  const result = await SingleModel.findOne({ _id });
 
+  return result;
+};
+
+const deleteProductFromDB = async (_id: string) => {
+  const result = await SingleModel.updateOne({ _id }, { isDeleted: true });
+  return result;
+};
+
+const updateProductInDB = async (
+  _id: string,
+  updatedData: Partial<SingleProduct>
+) => {
+  const result = await SingleModel.findByIdAndUpdate({ _id }, updatedData, {
+    new: true,
+  });
   return result;
 };
 
@@ -22,4 +37,6 @@ export const SingleProductService = {
   createSingleProductIntoDB,
   getAllSingleProductIntoDB,
   getSingleProductIntoDB,
+  deleteProductFromDB,
+  updateProductInDB,
 };

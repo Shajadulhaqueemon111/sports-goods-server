@@ -3,7 +3,7 @@ import cors from "cors";
 import { AbouteRoutes } from "./modules/about/aboute.router";
 import { ProductRoute } from "./modules/AllProducts/products/product.router";
 import { SingleProductRoute } from "./modules/singleProduct/single.product.router";
-import { userRoute } from "./modules/user/user.route";
+
 const app: Application = express();
 
 //parser
@@ -16,7 +16,6 @@ app.use(cors());
 app.use("/api/v1/aboute", AbouteRoutes);
 app.use("/api/v1/product", ProductRoute);
 app.use("/api/v1/single", SingleProductRoute);
-app.use("/api/v1/user", userRoute);
 
 // app.get("/", async (req: Request, res: Response, next: NextFunction) => {
 //   try {

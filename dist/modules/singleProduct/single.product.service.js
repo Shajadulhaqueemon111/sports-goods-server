@@ -19,12 +19,24 @@ const getAllSingleProductIntoDB = () => __awaiter(void 0, void 0, void 0, functi
     const result = yield single_product_model_1.SingleModel.find();
     return result;
 });
-const getSingleProductIntoDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield single_product_model_1.SingleModel.findOne({ id });
+const getSingleProductIntoDB = (_id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield single_product_model_1.SingleModel.findOne({ _id });
+    return result;
+});
+const deleteProductFromDB = (_id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield single_product_model_1.SingleModel.updateOne({ _id }, { isDeleted: true });
+    return result;
+});
+const updateProductInDB = (_id, updatedData) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield single_product_model_1.SingleModel.findByIdAndUpdate({ _id }, updatedData, {
+        new: true,
+    });
     return result;
 });
 exports.SingleProductService = {
     createSingleProductIntoDB,
     getAllSingleProductIntoDB,
     getSingleProductIntoDB,
+    deleteProductFromDB,
+    updateProductInDB,
 };

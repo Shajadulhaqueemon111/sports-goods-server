@@ -69,8 +69,8 @@ const getSingleProductData = (req, res) => __awaiter(void 0, void 0, void 0, fun
 });
 const deleteProductData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params;
-        const result = yield product_service_1.ProductService.deleteProductFromDB(id);
+        const { _id } = req.params;
+        const result = yield product_service_1.ProductService.deleteProductFromDB(_id);
         if (result) {
             res.status(200).json({
                 success: true,

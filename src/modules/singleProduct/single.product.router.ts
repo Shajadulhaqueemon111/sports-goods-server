@@ -11,6 +11,15 @@ router.post(
   SingleProductControllers.createSingleProductData
 );
 router.get("/get-product", SingleProductControllers.getAllSingleProductData);
-router.get("/get-product/:id", SingleProductControllers.getSingleProductData);
+
+router.delete(
+  "/delete-product/:_id",
+  SingleProductControllers.deleteProductData
+);
+router.get("/get-product/:_id", SingleProductControllers.getSingleProductData);
+router.patch(
+  "/upadate-product/:_id",
+  SingleProductControllers.updateProductData
+);
 
 export const SingleProductRoute = router;

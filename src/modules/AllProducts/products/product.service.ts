@@ -12,13 +12,13 @@ const getAllProductIntoDB = async () => {
   return result;
 };
 
-const getsingleProductIntoDB = async (id: string) => {
-  const result = await ProductModel.findOne({ id });
+const getsingleProductIntoDB = async (_id: string) => {
+  const result = await ProductModel.findOne({ _id });
 
   return result;
 };
-const deleteProductFromDB = async (id: string) => {
-  const result = await ProductModel.updateOne({ id }, { isDeleted: true });
+const deleteProductFromDB = async (_id: string) => {
+  const result = await ProductModel.updateOne({ _id }, { isDeleted: true });
   return result;
 };
 

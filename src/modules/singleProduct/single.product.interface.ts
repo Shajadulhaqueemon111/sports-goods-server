@@ -13,4 +13,5 @@ export type SingleProduct = {
   id: string;
 
   single_product: SingleProductsDetails;
+  isDeleted: boolean;
 };

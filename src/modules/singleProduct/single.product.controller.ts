@@ -42,8 +42,8 @@ const getAllSingleProductData = async (req: Request, res: Response) => {
 };
 const getSingleProductData = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const result = await SingleProductService.getSingleProductIntoDB(id);
+    const { _id } = req.params;
+    const result = await SingleProductService.getSingleProductIntoDB(_id);
     res.status(200).json({
       success: true,
       message: "single Product get data is successfully",
@@ -59,8 +59,69 @@ const getSingleProductData = async (req: Request, res: Response) => {
   }
 };
 
+const deleteProductData = async (req: Request, res: Response) => {
+  try {
+    const { _id } = req.params;
+    const result = await SingleProductService.deleteProductFromDB(_id);
+
+    if (result) {
+      res.status(200).json({
+        success: true,
+        message: "Product deleted successfully",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      success: false,
+      message: "An error occurred while deleting the product.",
+      data: error,
+    });
+  }
+};
+
+const updateProductData = async (req: Request, res: Response) => {
+  try {
+    const { _id } = req.params;
+    const updatedData = req.body;
+
+    const result = await SingleProductService.updateProductInDB(
+      _id,
+      updatedData
+    );
+
+    if (result) {
+      res.status(200).json({
+        success: true,
+        message: "Product updated successfully",
+        data: result,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: "Product not found",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      success: false,
+      message: "An error occurred while updating the product.",
+      data: error,
+    });
+  }
+};
+
 export const SingleProductControllers = {
   createSingleProductData,
   getAllSingleProductData,
   getSingleProductData,
+  deleteProductData,
+  updateProductData,
 };
