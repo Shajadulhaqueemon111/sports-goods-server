@@ -32,7 +32,7 @@ const conformationService = (transactionId) => __awaiter(void 0, void 0, void 0,
     else {
         message = "payment Faild !";
     }
-    const filePath = (0, path_1.join)(__dirname, "../../../views/conformation.html");
+    const filePath = (0, path_1.join)(__dirname, "../../modules/Views/conformation.html");
     let templete = (0, fs_1.readFileSync)(filePath, "utf-8");
     console.log(templete);
     templete = templete.replace("{{message}}", message);

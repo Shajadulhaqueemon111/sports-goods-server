@@ -22,7 +22,7 @@ const conformationService = async (transactionId: string) => {
     message = "payment Faild !";
   }
 
-  const filePath = join(__dirname, "../../../views/conformation.html");
+  const filePath = join(__dirname, "../../modules/Views/conformation.html");
 
   let templete = readFileSync(filePath, "utf-8");
   console.log(templete);

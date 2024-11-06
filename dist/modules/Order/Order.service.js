@@ -19,12 +19,16 @@ const single_product_model_1 = require("../singleProduct/single.product.model");
 const Order_model_1 = __importDefault(require("./Order.model"));
 const createOrder = (orderData) => __awaiter(void 0, void 0, void 0, function* () {
     const { user, products } = orderData;
+    console.log(orderData);
     let totalPrice = 0;
     // Calculate the total price
     const productDetails = yield Promise.all(products.map((item) => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("item data:", item);
         const product = yield single_product_model_1.SingleModel.findById(item.product);
+        console.log("Product found:", product);
         if (product) {
-            totalPrice += product.price * item.quantity;
+            const productPrice = Number(product.price);
+            totalPrice += productPrice * item.quantity;
             return {
                 product: product._id,
                 quantity: item.quantity,

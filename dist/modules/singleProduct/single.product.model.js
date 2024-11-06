@@ -2,7 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SingleModel = void 0;
 const mongoose_1 = require("mongoose");
-const singleProductDetailsSchema = new mongoose_1.Schema({
+const singleProductSchema = new mongoose_1.Schema({
+    id: { type: String },
     name: { type: String },
     description: { type: String },
     category: { type: String },
@@ -11,10 +12,6 @@ const singleProductDetailsSchema = new mongoose_1.Schema({
     rating: { type: String },
     price: { type: String },
     image: { type: String },
-});
-const singleProductSchema = new mongoose_1.Schema({
-    id: { type: String },
-    single_product: singleProductDetailsSchema,
     isDeleted: {
         type: Boolean,
         default: false,

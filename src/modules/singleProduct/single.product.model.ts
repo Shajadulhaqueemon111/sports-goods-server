@@ -1,10 +1,8 @@
 import { model, Schema } from "mongoose";
-import {
-  SingleProduct,
-  SingleProductsDetails,
-} from "./single.product.interface";
+import { SingleProduct } from "./single.product.interface";
 
-const singleProductDetailsSchema = new Schema<SingleProductsDetails>({
+const singleProductSchema = new Schema<SingleProduct>({
+  id: { type: String },
   name: { type: String },
   description: { type: String },
   category: { type: String },
@@ -13,10 +11,6 @@ const singleProductDetailsSchema = new Schema<SingleProductsDetails>({
   rating: { type: String },
   price: { type: String },
   image: { type: String },
-});
-const singleProductSchema = new Schema<SingleProduct>({
-  id: { type: String },
-  single_product: singleProductDetailsSchema,
   isDeleted: {
     type: Boolean,
     default: false,

@@ -1,4 +1,6 @@
-export type SingleProductsDetails = {
+export type SingleProduct = {
+  id: string;
+
   name: string;
   description: string;
   category: string;
@@ -7,11 +9,5 @@ export type SingleProductsDetails = {
   rating: string;
   price: string;
   image: string;
-};
-
-export type SingleProduct = {
-  id: string;
-
-  single_product: SingleProductsDetails;
   isDeleted: boolean;
 };

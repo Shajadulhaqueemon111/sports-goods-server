@@ -2,19 +2,23 @@
 
 import { initiatePayment } from "../Payment/Payment.utils";
 import { SingleModel } from "../singleProduct/single.product.model";
-import OrderModel from "./Order.model";
+import Order from "./Order.model";
 
 const createOrder = async (orderData: any) => {
   const { user, products } = orderData;
+  console.log(orderData);
 
   let totalPrice = 0;
 
   // Calculate the total price
   const productDetails = await Promise.all(
     products.map(async (item: any) => {
+      console.log("item data:", item);
       const product = await SingleModel.findById(item.product);
+      console.log("Product found:", product);
       if (product) {
-        totalPrice += product.price * item.quantity;
+        const productPrice = Number(product.price);
+        totalPrice += productPrice * item.quantity;
         return {
           product: product._id,
           quantity: item.quantity,
@@ -27,7 +31,7 @@ const createOrder = async (orderData: any) => {
 
   const transactionId = `TXN-${Date.now()}`;
 
-  const order = new OrderModel({
+  const order = new Order({
     user,
     products: productDetails,
     totalPrice,
