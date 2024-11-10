@@ -23,8 +23,8 @@ const initiatePayment = (paymentData) => __awaiter(void 0, void 0, void 0, funct
         store_id: process.env.STORE_ID,
         signature_id: process.env.SIGNATURE_KEY,
         tran_id: paymentData.transactionId,
-        success_url: `http://localhost:3000/api/v1/payment/conformation?transactionId=${paymentData.transactionId}&status=success`,
-        fail_url: `http://localhost:3000/api/v1/payment/conformation?status=faield`,
+        success_url: `http://localhost:5000/api/v1/payment/conformation?transactionId=${paymentData.transactionId}&status=success`,
+        fail_url: `http://localhost:5000/api/v1/payment/conformation?status=faield`,
         cancel_url: "http://localhost:5173/",
         amount: paymentData.totalPrice,
         currency: "BDT",
@@ -41,7 +41,6 @@ const initiatePayment = (paymentData) => __awaiter(void 0, void 0, void 0, funct
         cus_phone: paymentData.customerPhone,
         type: "json",
     });
-    // console.log(response);
     return response.data;
 });
 exports.initiatePayment = initiatePayment;

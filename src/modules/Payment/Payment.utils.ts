@@ -5,13 +5,15 @@ import dotenv from "dotenv";
 dotenv.config({ path: "./.env" });
 
 dotenv.config();
+
 export const initiatePayment = async (paymentData: any) => {
   const response = await axios.post(process.env.PAYMENT_URL!, {
     store_id: process.env.STORE_ID,
     signature_id: process.env.SIGNATURE_KEY,
     tran_id: paymentData.transactionId,
-    success_url: `http://localhost:3000/api/v1/payment/conformation?transactionId=${paymentData.transactionId}&status=success`,
-    fail_url: `http://localhost:3000/api/v1/payment/conformation?status=faield`,
+
+    success_url: `http://localhost:5000/api/v1/payment/conformation?transactionId=${paymentData.transactionId}&status=success`,
+    fail_url: `http://localhost:5000/api/v1/payment/conformation?status=faield`,
     cancel_url: "http://localhost:5173/",
     amount: paymentData.totalPrice,
     currency: "BDT",
@@ -29,7 +31,6 @@ export const initiatePayment = async (paymentData: any) => {
     type: "json",
   });
 
-  // console.log(response);
   return response.data;
 };
 

@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.paymentController = void 0;
 const Payment_service_1 = require("./Payment.service");
 const conformationController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.query.transactionId);
-    const { transactionId } = req.query;
-    const result = yield Payment_service_1.paymentService.conformationService(transactionId);
+    console.log(req.query);
+    const { transactionId, status } = req.query;
+    const result = yield Payment_service_1.paymentService.conformationService(transactionId, status);
     res.send(result);
 });
 exports.paymentController = {

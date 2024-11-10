@@ -1,36 +1,40 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { join } from "path";
-
-import { readFileSync } from "fs";
-import { veriFyPayment } from "./Payment.utils";
+import { readFileSync, existsSync } from "fs";
 import OrderModel from "../Order/Order.model";
+import { veriFyPayment } from "./Payment.utils";
 
-const conformationService = async (transactionId: string) => {
+const conformationService = async (transactionId: string, status: string) => {
   const verifyResponse = await veriFyPayment(transactionId);
   console.log(verifyResponse);
   let result;
   let message = "";
+
   if (verifyResponse && verifyResponse.pay_status === "Successful") {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     result = await OrderModel.findOneAndUpdate(
       { transactionId },
-      {
-        paymentStatus: "paid",
-      }
+      { paymentStatus: "paid" }
     );
-    message = "Successfully Paid !";
+    message = "Successfully Paid!";
   } else {
-    message = "payment Faild !";
+    message = "Payment Failed!";
   }
 
-  const filePath = join(__dirname, "../../modules/Views/conformation.html");
+  const filePath = join(
+    __dirname,
+    "../../../src/modules/Views/conformation.html"
+  );
 
-  let templete = readFileSync(filePath, "utf-8");
-  console.log(templete);
+  if (!existsSync(filePath)) {
+    throw new Error(`File not found at path: ${filePath}`);
+  }
 
-  templete = templete.replace("{{message}}", message);
-  return templete;
+  let template = readFileSync(filePath, "utf-8");
+  console.log(template);
+
+  template = template.replace("{{message}}", message);
+  return template;
 };
-
 export const paymentService = {
   conformationService,
 };
