@@ -27,8 +27,9 @@ const updateProductInDB = async (
   _id: string,
   updatedData: Partial<SingleProduct>
 ) => {
-  const result = await SingleModel.findByIdAndUpdate({ _id }, updatedData, {
+  const result = await SingleModel.findByIdAndUpdate(_id, updatedData, {
     new: true,
+    runValidators: true,
   });
   return result;
 };

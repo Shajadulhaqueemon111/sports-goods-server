@@ -28,8 +28,9 @@ const deleteProductFromDB = (_id) => __awaiter(void 0, void 0, void 0, function*
     return result;
 });
 const updateProductInDB = (_id, updatedData) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield single_product_model_1.SingleModel.findByIdAndUpdate({ _id }, updatedData, {
+    const result = yield single_product_model_1.SingleModel.findByIdAndUpdate(_id, updatedData, {
         new: true,
+        runValidators: true,
     });
     return result;
 });

@@ -89,7 +89,11 @@ const deleteProductData = async (req: Request, res: Response) => {
 const updateProductData = async (req: Request, res: Response) => {
   try {
     const { _id } = req.params;
-    const updatedData = req.body;
+    console.log("Updating product with ID:", req.params._id);
+    const { single_product: updatedData } = req.body;
+
+    console.log("Updating product with ID:", _id);
+    console.log("Updated data:", updatedData);
 
     const result = await SingleProductService.updateProductInDB(
       _id,
@@ -109,7 +113,7 @@ const updateProductData = async (req: Request, res: Response) => {
       });
     }
   } catch (error) {
-    console.error(error);
+    console.error("Error during update:", error);
     res.status(400).json({
       success: false,
       message: "An error occurred while updating the product.",

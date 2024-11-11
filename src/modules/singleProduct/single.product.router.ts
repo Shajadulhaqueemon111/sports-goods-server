@@ -18,7 +18,7 @@ router.delete(
 );
 router.get("/get-product/:_id", SingleProductControllers.getSingleProductData);
 router.patch(
-  "/upadate-product/:_id",
+  "/update-product/:_id",
   SingleProductControllers.updateProductData
 );
 

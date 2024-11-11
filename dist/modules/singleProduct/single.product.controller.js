@@ -97,7 +97,10 @@ const deleteProductData = (req, res) => __awaiter(void 0, void 0, void 0, functi
 const updateProductData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { _id } = req.params;
-        const updatedData = req.body;
+        console.log("Updating product with ID:", req.params._id);
+        const { single_product: updatedData } = req.body;
+        console.log("Updating product with ID:", _id);
+        console.log("Updated data:", updatedData);
         const result = yield single_product_service_1.SingleProductService.updateProductInDB(_id, updatedData);
         if (result) {
             res.status(200).json({
@@ -114,7 +117,7 @@ const updateProductData = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }
     }
     catch (error) {
-        console.error(error);
+        console.error("Error during update:", error);
         res.status(400).json({
             success: false,
             message: "An error occurred while updating the product.",
