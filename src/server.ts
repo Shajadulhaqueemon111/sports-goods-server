@@ -13,5 +13,8 @@ async function main() {
     console.log(error);
   }
 }
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
 
 main();

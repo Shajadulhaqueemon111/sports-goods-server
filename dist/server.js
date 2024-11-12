@@ -28,4 +28,7 @@ function main() {
         }
     });
 }
+app_1.default.get("/", (req, res) => {
+    res.send("Hello World!");
+});
 main();
